@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJAX</title>
+</head>
+<body>
+  <script>
+    const url = "http://localhost:3000/api/user";
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("GET",url,true);
+
+    xhr.onerror = function () {
+      console.log("network error");
+    }
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState !== 4) return;
+
+      if (xhr.status >= 200 && xhr.status <300) {
+        console.log(xhr.response);
+      } else {
+        console.error(xhr.status, xhr.statusText);
+      }
+    }
+
+    xhr.send();
+  </script>
+</body>
+</html>
